@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { styleProfiles } from "@/content/site-data";
+import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
 
-export default function KitchenStylesPage() {
+export default async function KitchenStylesPage() {
+  const styleProfiles = await getKitchenStyleProfiles();
+
   return (
     <div className="pb-20 pt-32 sm:pt-36">
       <section className="luxury-shell flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -22,22 +24,23 @@ export default function KitchenStylesPage() {
 
       <section className="luxury-shell mt-16 grid gap-6 lg:grid-cols-2">
         {styleProfiles.map((profile) => (
-          <article key={profile.name} className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+          <article key={profile.id} className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
             <div className="relative h-80">
-              <Image src={profile.image} alt={profile.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src={profile.image} alt={profile.alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
             </div>
             <div className="space-y-4 p-7">
-              <p className="eyebrow">Perfil de estilo</p>
               <h2 className="font-display text-5xl text-[var(--color-ivory)]">{profile.name}</h2>
-              <p className="text-base leading-8 text-[var(--color-mist)]">{profile.blurb}</p>
-              <div className="flex flex-wrap gap-3">
-                {profile.details.map((detail) => (
-                  <span key={detail} className="rounded-full border border-[var(--color-border)] px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-ivory)]">
-                    {detail}
-                  </span>
-                ))}
-              </div>
+              <p className="text-base leading-8 text-[var(--color-mist)]">{profile.description}</p>
+              {profile.details.length > 0 ? (
+                <div className="flex flex-wrap gap-3">
+                  {profile.details.map((detail) => (
+                    <span key={detail} className="rounded-full border border-[var(--color-border)] px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-ivory)]">
+                      {detail}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </article>
         ))}

@@ -28,14 +28,14 @@ export function SiteHeader() {
         }`}
       >
         <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(255,255,255,0.2),_rgba(110,110,118,0.12))] font-display text-xl font-semibold text-[var(--color-ivory)]">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2d3950] bg-[radial-gradient(circle_at_28%_24%,_#10131a,_#050608_68%)] font-display text-xl font-semibold text-[#f3eee4] ring-1 ring-[#182033]">
             J
           </span>
           <div>
-            <div className="font-display text-2xl leading-none tracking-[0.18em] text-[var(--color-ivory)] uppercase">
+            <div className="font-display text-2xl leading-none tracking-[0.18em] text-[#f3eee4] uppercase">
               COCINASJAM
             </div>
-            <div className="text-[10px] uppercase tracking-[0.38em] text-[var(--color-mist)]">
+            <div className="text-[10px] uppercase tracking-[0.38em] text-[#c8c1b4]">
               Instalación de Cocinas
             </div>
           </div>

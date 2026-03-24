@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-const strapiUrl =
-  process.env.STRAPI_URL || process.env.STRAPI_DEV_URL || process.env.STRAPI_PRODUCTION_URL;
+const strapiUrl = process.env.STRAPI_URL || process.env.STRAPI_PRODUCTION_URL;
+const isDevelopment = process.env.NODE_ENV === "development";
 
 const strapiPattern = strapiUrl
   ? (() => {
@@ -10,23 +10,21 @@ const strapiPattern = strapiUrl
       return {
         protocol: parsed.protocol.replace(":", "") as "http" | "https",
         hostname: parsed.hostname,
-        port: parsed.port,
       };
     })()
   : null;
 
 const nextConfig: NextConfig = {
   images: {
+    dangerouslyAllowLocalIP: isDevelopment,
     remotePatterns: [
       {
         protocol: "http",
         hostname: "localhost",
-        port: "1337",
       },
       {
         protocol: "http",
         hostname: "127.0.0.1",
-        port: "1337",
       },
       {
         protocol: "https",

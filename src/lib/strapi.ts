@@ -1,4 +1,4 @@
-const STRAPI_URL = process.env.STRAPI_URL || process.env.STRAPI_DEV_URL || "";
+const STRAPI_URL = process.env.STRAPI_URL || "";
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
 function buildHeaders() {

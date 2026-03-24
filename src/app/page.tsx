@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { kitchenStyles, processSteps, testimonials, trustPillars } from "@/content/site-data";
+import { processSteps, testimonials, trustPillars } from "@/content/site-data";
+import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const kitchenStyles = (await getKitchenStyleProfiles()).slice(0, 3);
+
   return (
     <div className="pb-20 pt-28 sm:pt-32">
       <section className="luxury-shell grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
@@ -78,9 +81,9 @@ export default function HomePage() {
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
           {kitchenStyles.map((style) => (
-            <article key={style.name} className="group relative overflow-hidden rounded-[2rem] border border-white/10">
+            <article key={style.id} className="group relative overflow-hidden rounded-[2rem] border border-white/10">
               <div className="relative h-[28rem]">
-                <Image src={style.image} alt={style.name} fill className="object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-50" sizes="(max-width: 1024px) 100vw, 33vw" />
+                <Image src={style.image} alt={style.alt} fill className="object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-50" sizes="(max-width: 1024px) 100vw, 33vw" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.04)_0%,_rgba(0,0,0,0.18)_38%,_rgba(0,0,0,0.86)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <div className="rounded-[1.5rem] bg-black/35 p-5 backdrop-blur-[2px]">
