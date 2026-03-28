@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const strapiUrl = process.env.STRAPI_URL || process.env.STRAPI_PRODUCTION_URL;
+const strapiUrl = process.env.STRAPI_URL;
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const strapiPattern = strapiUrl
