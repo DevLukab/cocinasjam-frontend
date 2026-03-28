@@ -196,5 +196,4 @@ export const contactDetails = {
   phone: "+44 (0)20 5555 0148",
   email: "hello@atelierkitchens.co",
   address: "18 Mercer Lane, Londres W1",
-  hours: "Lun-Vie 8:30-18:00 | Sáb con cita previa",
 };

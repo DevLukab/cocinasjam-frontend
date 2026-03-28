@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -27,9 +28,16 @@ export function SiteHeader() {
             : "border-white/10 bg-black/20"
         }`}
       >
-        <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2d3950] bg-[radial-gradient(circle_at_28%_24%,_#10131a,_#050608_68%)] font-display text-xl font-semibold text-[#f3eee4] ring-1 ring-[#182033]">
-            J
+        <Link href="/" className="inline-flex items-center gap-3">
+          <span className="inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-[var(--color-border)] bg-black/70 p-1 sm:h-14 sm:w-14">
+            <Image
+              src="/logo.jpeg"
+              alt="Cocinas JAM"
+              width={220}
+              height={220}
+              priority
+              className="h-full w-full rounded-full object-cover"
+            />
           </span>
           <div>
             <div className="font-display text-2xl leading-none tracking-[0.18em] text-[#f3eee4] uppercase">

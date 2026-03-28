@@ -1,7 +1,10 @@
 import Link from "next/link";
-import { contactDetails, navigationLinks } from "@/content/site-data";
+import { navigationLinks } from "@/content/site-data";
+import { getContactDetails } from "@/lib/contact";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const contactDetails = await getContactDetails();
+
   return (
     <footer className="border-t border-white/10 bg-black/60">
       <div className="luxury-shell grid gap-10 py-14 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
@@ -20,7 +23,6 @@ export function SiteFooter() {
           <p>{contactDetails.address}</p>
           <p>{contactDetails.phone}</p>
           <p>{contactDetails.email}</p>
-          <p>{contactDetails.hours}</p>
         </div>
 
         <div className="space-y-3 text-sm text-[var(--color-mist)]">

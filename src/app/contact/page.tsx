@@ -1,7 +1,9 @@
 import { BookingInquiryForm } from "@/components/forms/booking-inquiry-form";
-import { contactDetails } from "@/content/site-data";
+import { getContactDetails } from "@/lib/contact";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contactDetails = await getContactDetails();
+
   return (
     <div className="pb-20 pt-32 sm:pt-36">
       <section className="luxury-shell max-w-3xl space-y-4">
@@ -30,10 +32,6 @@ export default function ContactPage() {
               <div className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
                 <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">Dirección</p>
                 <p className="mt-2 text-base text-[var(--color-ivory)]">{contactDetails.address}</p>
-              </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
-                <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-gold)]">Horario</p>
-                <p className="mt-2 text-base text-[var(--color-ivory)]">{contactDetails.hours}</p>
               </div>
             </div>
           </div>
