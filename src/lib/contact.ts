@@ -22,7 +22,8 @@ function hasValue(value: string | null | undefined) {
 }
 
 function withFallback(value: string | null | undefined, fallback: string) {
-  return hasValue(value) ? value.trim() : fallback;
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : fallback;
 }
 
 function formatPhoneNumber(phone: string) {
