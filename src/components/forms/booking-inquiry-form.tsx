@@ -280,13 +280,50 @@ export function BookingInquiryForm({
         </button>
 
         {statusMessage ? (
-          <p
-            className={`text-sm normal-case tracking-normal sm:col-span-2 ${
-              statusType === "success" ? "text-[var(--color-gold)]" : "text-[#f6a8a8]"
+          <div
+            className={`sm:col-span-2 rounded-[1.25rem] border px-4 py-4 ${
+              statusType === "success"
+                ? "border-[rgba(201,178,122,0.35)] bg-[linear-gradient(135deg,rgba(201,178,122,0.14),rgba(201,178,122,0.04))]"
+                : "border-[rgba(246,168,168,0.4)] bg-[linear-gradient(135deg,rgba(246,168,168,0.18),rgba(246,168,168,0.06))]"
             }`}
           >
-            {statusMessage}
-          </p>
+            <div className="flex items-start gap-3">
+              <span
+                className={`mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${
+                  statusType === "success"
+                    ? "border-[rgba(201,178,122,0.45)] bg-[rgba(201,178,122,0.12)] text-[var(--color-gold)]"
+                    : "border-[rgba(246,168,168,0.45)] bg-[rgba(246,168,168,0.16)] text-[#f6a8a8]"
+                }`}
+              >
+                {statusType === "success" ? (
+                  <svg viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5" aria-hidden="true">
+                    <path d="M3 8.5L6.3 11.5L13 4.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5" aria-hidden="true">
+                    <path d="M8 3V9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <circle cx="8" cy="12.2" r="1" fill="currentColor" />
+                  </svg>
+                )}
+              </span>
+              <div className="space-y-1">
+                <p
+                  className={`text-[11px] uppercase tracking-[0.22em] ${
+                    statusType === "success" ? "text-[var(--color-gold)]" : "text-[#f6b9b9]"
+                  }`}
+                >
+                  {statusType === "success" ? "Solicitud enviada" : "No se pudo enviar"}
+                </p>
+                <p
+                  className={`text-sm normal-case tracking-normal ${
+                    statusType === "success" ? "text-[var(--color-ivory)]" : "text-[#ffd8d8]"
+                  }`}
+                >
+                  {statusMessage}
+                </p>
+              </div>
+            </div>
+          </div>
         ) : null}
       </form>
     </div>
