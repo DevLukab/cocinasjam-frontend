@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "COCINASJAM | Instalación y Reformas de Cocina",
   description:
     "COCINASJAM desarrolla instalaciones y reformas de cocina bien resueltas, desde la planificación inicial hasta la entrega final.",
+  icons: {
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg",
+  },
 };
 
 export default function RootLayout({
