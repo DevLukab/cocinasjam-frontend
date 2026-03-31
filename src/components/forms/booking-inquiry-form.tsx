@@ -1,3 +1,7 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+
 type BookingInquiryFormProps = {
   title: string;
   description: string;
@@ -31,13 +35,53 @@ export function BookingInquiryForm({
   description,
   buttonLabel,
 }: BookingInquiryFormProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [statusType, setStatusType] = useState<"success" | "error" | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setIsSubmitting(true);
+    setStatusMessage(null);
+    setStatusType(null);
+
+    try {
+      const response = await fetch("/api/consultation-requests", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(payload?.error || "No hemos podido enviar tu solicitud. Intentalo de nuevo.");
+      }
+
+      form.reset();
+      setStatusType("success");
+      setStatusMessage("Solicitud enviada. Te contactaremos muy pronto.");
+    } catch (error) {
+      setStatusType("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "No hemos podido enviar tu solicitud. Intentalo de nuevo.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <div className="panel rounded-[2rem] p-6 sm:p-8">
       <p className="eyebrow">Formulario de consulta</p>
       <h2 className="mt-4 font-display text-5xl text-[var(--color-ivory)]">{title}</h2>
       <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--color-mist)]">{description}</p>
 
-      <form className="mt-8 grid gap-4 sm:grid-cols-2">
+      <form className="mt-8 grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
         <p className={`${sectionTitleClassName} sm:col-span-2`}>
           1. Datos básicos
         </p>
@@ -87,8 +131,8 @@ export function BookingInquiryForm({
               <option value="" disabled>
                 Selecciona una opción
               </option>
-              <option value="particular">Particular</option>
-              <option value="empresa_estudio_interiorista">Empresa / Estudio / Interiorista</option>
+              <option value="Particular">Particular</option>
+              <option value="Empresa / Estudio / Interiorista">Empresa / Estudio / Interiorista</option>
             </select>
             <svg viewBox="0 0 12 8" fill="none" className={selectIconClassName} aria-hidden="true">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -103,10 +147,10 @@ export function BookingInquiryForm({
               <option value="" disabled>
                 Selecciona una opción
               </option>
-              <option value="solo_instalacion">Solo instalación</option>
-              <option value="diseno_instalacion">Diseño + instalación</option>
-              <option value="reforma_completa">Reforma completa</option>
-              <option value="asesoramiento">No lo tengo claro (asesoramiento)</option>
+              <option value="Solo instalación">Solo instalación</option>
+              <option value="Diseño + instalación">Diseño + instalación</option>
+              <option value="Reforma completa">Reforma completa</option>
+              <option value="No lo tengo claro (asesoramiento)">No lo tengo claro (asesoramiento)</option>
             </select>
             <svg viewBox="0 0 12 8" fill="none" className={selectIconClassName} aria-hidden="true">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -121,10 +165,10 @@ export function BookingInquiryForm({
               <option value="" disabled>
                 Selecciona una opción
               </option>
-              <option value="cocina_comprada">Ya tengo la cocina comprada</option>
-              <option value="comparando_opciones">Estoy comparando opciones</option>
-              <option value="sin_cocina">Aún no tengo nada</option>
-              <option value="obra_en_curso">En obra / reforma en curso</option>
+              <option value="Ya tengo la cocina comprada">Ya tengo la cocina comprada</option>
+              <option value="Estoy comparando opciones">Estoy comparando opciones</option>
+              <option value="Aún no tengo nada">Aún no tengo nada</option>
+              <option value="En obra / reforma en curso">En obra / reforma en curso</option>
             </select>
             <svg viewBox="0 0 12 8" fill="none" className={selectIconClassName} aria-hidden="true">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -139,10 +183,10 @@ export function BookingInquiryForm({
               <option value="" disabled>
                 Selecciona una opción
               </option>
-              <option value="menos_5000">Menos de 5.000 EUR</option>
-              <option value="5000_10000">5.000 EUR - 10.000 EUR</option>
-              <option value="10000_20000">10.000 EUR - 20.000 EUR</option>
-              <option value="mas_20000">+20.000 EUR</option>
+              <option value="Menos de 5.000 EUR">Menos de 5.000 EUR</option>
+              <option value="Entre 5.000 y 10.000 EUR">5.000 EUR - 10.000 EUR</option>
+              <option value="Entre 10.000 y 20.000 EUR">10.000 EUR - 20.000 EUR</option>
+              <option value="Más de 20.000 EUR">+20.000 EUR</option>
             </select>
             <svg viewBox="0 0 12 8" fill="none" className={selectIconClassName} aria-hidden="true">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -157,10 +201,10 @@ export function BookingInquiryForm({
               <option value="" disabled>
                 Selecciona una opción
               </option>
-              <option value="urgente_0_2_semanas">Urgente (0-2 semanas)</option>
-              <option value="1_mes">1 mes</option>
-              <option value="2_3_meses">2-3 meses</option>
-              <option value="solo_mirando">Solo estoy mirando</option>
+              <option value="Urgente (0-2 semanas)">Urgente (0-2 semanas)</option>
+              <option value="En 1 mes">1 mes</option>
+              <option value="En 2-3 meses">2-3 meses</option>
+              <option value="Solo estoy mirando">Solo estoy mirando</option>
             </select>
             <svg viewBox="0 0 12 8" fill="none" className={selectIconClassName} aria-hidden="true">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -175,10 +219,10 @@ export function BookingInquiryForm({
               <option value="" disabled>
                 Selecciona una opción
               </option>
-              <option value="piso">Piso</option>
-              <option value="casa">Casa</option>
-              <option value="obra_nueva">Obra nueva</option>
-              <option value="reforma">Reforma</option>
+              <option value="Piso">Piso</option>
+              <option value="Casa">Casa</option>
+              <option value="Obra nueva">Obra nueva</option>
+              <option value="Reforma">Reforma</option>
             </select>
             <svg viewBox="0 0 12 8" fill="none" className={selectIconClassName} aria-hidden="true">
               <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -229,10 +273,21 @@ export function BookingInquiryForm({
 
         <button
           type="submit"
+          disabled={isSubmitting}
           className="mt-2 inline-flex justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] px-6 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-black sm:col-span-2"
         >
-          {buttonLabel}
+          {isSubmitting ? "Enviando..." : buttonLabel}
         </button>
+
+        {statusMessage ? (
+          <p
+            className={`text-sm normal-case tracking-normal sm:col-span-2 ${
+              statusType === "success" ? "text-[var(--color-gold)]" : "text-[#f6a8a8]"
+            }`}
+          >
+            {statusMessage}
+          </p>
+        ) : null}
       </form>
     </div>
   );
