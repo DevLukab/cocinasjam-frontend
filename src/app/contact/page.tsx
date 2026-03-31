@@ -74,7 +74,7 @@ export default async function ContactPage() {
         <BookingInquiryForm
           title="Cuéntanos tu proyecto y te llamamos."
           description="Hemos sustituido la reserva externa por un formulario completo para recoger presupuesto, medidas, referencias y condicionantes antes de la consulta."
-          buttonLabel="Solicitar consulta"
+          buttonLabel="Solicitar presupuesto sin compromiso"
         />
       </section>
     </div>
