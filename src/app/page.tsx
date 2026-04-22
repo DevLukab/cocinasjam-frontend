@@ -1,11 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { processSteps, testimonials, trustPillars } from "@/content/site-data";
+import { testimonials, trustPillars } from "@/content/site-data";
 import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
+import { getProcessSteps } from "@/lib/our-processes";
+
+function getProcessSummary(body: string) {
+  return body.split("\n").map((line) => line.trim()).find(Boolean) || body;
+}
 
 export default async function HomePage() {
   const kitchenStyles = (await getKitchenStyleProfiles()).slice(0, 3);
+  const processSteps = await getProcessSteps();
 
   return (
     <div className="pb-20 pt-28 sm:pt-32">
@@ -103,11 +109,11 @@ export default async function HomePage() {
           <h2 className="font-display text-5xl text-[var(--color-ivory)] sm:text-6xl">Una ruta clara desde la idea inicial hasta la entrega final.</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
-          {processSteps.map((step, index) => (
-            <div key={step.title} className="panel rounded-[1.75rem] p-6">
-              <p className="text-sm text-[var(--color-gold)]">0{index + 1}</p>
+          {processSteps.map((step) => (
+            <div key={step.id} className="panel rounded-[1.75rem] p-6">
+              <p className="text-sm text-[var(--color-gold)]">{String(step.stepNumber).padStart(2, "0")}</p>
               <h3 className="mt-4 font-display text-3xl text-[var(--color-ivory)]">{step.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">{step.summary}</p>
+              <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">{getProcessSummary(step.body)}</p>
             </div>
           ))}
         </div>

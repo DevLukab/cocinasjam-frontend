@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { detailedProcess } from "@/content/site-data";
+import { getProcessSteps } from "@/lib/our-processes";
 
-export default function ProcessPage() {
+export default async function ProcessPage() {
+  const processSteps = await getProcessSteps();
+
   return (
     <div className="pb-20 pt-32 sm:pt-36">
       <section className="luxury-shell">
@@ -18,15 +20,15 @@ export default function ProcessPage() {
       </section>
 
       <section className="luxury-shell mt-16 space-y-10">
-        {detailedProcess.map((step, index) => (
-          <article key={step.title} className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-7 lg:grid-cols-2 lg:items-center">
+        {processSteps.map((step, index) => (
+          <article key={step.id} className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-7 lg:grid-cols-2 lg:items-center">
             <div className={`space-y-4 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-              <p className="eyebrow">Fase {index + 1}</p>
+              <p className="eyebrow">Fase {step.stepNumber}</p>
               <h2 className="font-display text-5xl text-[var(--color-ivory)]">{step.title}</h2>
-              <p className="max-w-xl text-base leading-8 text-[var(--color-mist)]">{step.body}</p>
+              <p className="max-w-xl whitespace-pre-line text-base leading-8 text-[var(--color-mist)]">{step.body}</p>
             </div>
             <div className={`relative h-80 overflow-hidden rounded-[1.75rem] border border-white/10 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-              <Image src={step.image} alt={step.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src={step.image} alt={step.alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </article>
         ))}
