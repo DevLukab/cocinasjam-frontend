@@ -26,7 +26,7 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-3">
+      <div data-animate-group className="flex flex-wrap gap-3">
         {tags.map((tag) => (
           <button
             key={tag}
@@ -35,6 +35,7 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
               setActiveTag(tag);
               setActiveIndex(null);
             }}
+            data-animate="item"
             className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] transition ${
               activeTag === tag
                 ? "border-[var(--color-gold)] bg-[rgba(214,214,219,0.16)] text-[var(--color-ivory)]"
@@ -46,15 +47,16 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
         ))}
       </div>
 
-      <div className="mt-10 columns-1 gap-5 md:columns-2 xl:columns-3">
+      <div data-animate-group className="mt-10 columns-1 gap-5 md:columns-2 xl:columns-3">
         {visibleItems.map((item, index) => (
           <button
             key={`${item.title}-${index}`}
             type="button"
             onClick={() => setActiveIndex(index)}
+            data-animate="item"
             className="group relative mb-5 block w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-black text-left break-inside-avoid"
           >
-            <div className={`relative ${item.height}`}>
+            <div data-animate="media" className={`relative ${item.height}`}>
               <Image
                 src={item.image}
                 alt={item.alt}
