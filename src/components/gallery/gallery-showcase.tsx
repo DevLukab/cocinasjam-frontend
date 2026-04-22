@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import type { GalleryItem } from "@/lib/gallery";
 
 type GalleryShowcaseProps = {
@@ -23,6 +24,14 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
   );
 
   const activeItem = activeIndex === null ? null : visibleItems[activeIndex];
+  const canUseDOM = typeof document !== "undefined";
+
+  useEffect(() => {
+    document.body.style.overflow = activeItem ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeItem]);
 
   return (
     <>
@@ -76,8 +85,23 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
         ))}
       </div>
 
-      {activeItem ? (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 px-4 py-8 backdrop-blur-sm">
+      {canUseDOM && activeItem
+        ? createPortal(
+        <div className="fixed inset-0 z-[80] overflow-hidden bg-black/88">
+          <div className="absolute inset-0">
+            <Image
+              src={activeItem.image}
+              alt=""
+              fill
+              unoptimized
+              aria-hidden="true"
+              className="object-cover opacity-24 blur-3xl scale-110"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(12,12,16,0.18),rgba(3,3,4,0.82)_72%)]" />
+          </div>
+
+          <div className="relative flex min-h-screen items-center justify-center px-4 py-8 backdrop-blur-sm">
           <button
             type="button"
             onClick={() => setActiveIndex(null)}
@@ -94,7 +118,7 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
           >
             <ChevronLeft className="size-5" />
           </button>
-          <div className="w-full max-w-5xl overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[#101014]">
+          <div className="w-full max-w-5xl overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[rgba(16,16,20,0.72)] shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
             <div className="relative h-[70vh] min-h-[24rem]">
               <Image src={activeItem.image} alt={activeItem.alt} fill unoptimized className="object-cover" sizes="100vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
@@ -114,8 +138,12 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
           >
             <ChevronRight className="size-5" />
           </button>
+          </div>
         </div>
-      ) : null}
+        ,
+        document.body,
+      )
+        : null}
     </>
   );
 }
