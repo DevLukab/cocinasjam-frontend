@@ -15,6 +15,11 @@ export function PageAnimations({ children }: PropsWithChildren) {
       const media = gsap.matchMedia();
 
       media.add("(prefers-reduced-motion: no-preference)", () => {
+        const shouldAnimateOnLoad = (element: HTMLElement, viewportRatio = 0.94) => {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= window.innerHeight * viewportRatio;
+        };
+
         const heroShell = scope.current?.querySelector<HTMLElement>("[data-animate='hero-shell']");
         const heroCopyItems = scope.current?.querySelectorAll<HTMLElement>("[data-animate='hero-copy'] > *");
         const heroImage = scope.current?.querySelector<HTMLElement>("[data-animate='hero-image']");
@@ -63,43 +68,79 @@ export function PageAnimations({ children }: PropsWithChildren) {
           const items = group.querySelectorAll<HTMLElement>("[data-animate='item']");
           if (!items.length) return;
 
-          gsap.from(items, {
+          const animationConfig = {
             opacity: 0,
             y: 32,
             stagger: 0.12,
             duration: 0.85,
             ease: "power2.out",
+          } as const;
+
+          if (shouldAnimateOnLoad(group)) {
+            gsap.from(items, {
+              ...animationConfig,
+              delay: 0.12,
+            });
+            return;
+          }
+
+          gsap.from(items, {
+            ...animationConfig,
             scrollTrigger: {
               trigger: group,
-              start: "top 80%",
+              start: "top 88%",
             },
           });
         });
 
         const revealBlocks = gsap.utils.toArray<HTMLElement>("[data-animate='reveal']");
         revealBlocks.forEach((block) => {
-          gsap.from(block, {
+          const animationConfig = {
             opacity: 0,
             y: 34,
             duration: 0.95,
             ease: "power2.out",
+          } as const;
+
+          if (shouldAnimateOnLoad(block)) {
+            gsap.from(block, {
+              ...animationConfig,
+              delay: 0.14,
+            });
+            return;
+          }
+
+          gsap.from(block, {
+            ...animationConfig,
             scrollTrigger: {
               trigger: block,
-              start: "top 82%",
+              start: "top 90%",
             },
           });
         });
 
         const mediaBlocks = gsap.utils.toArray<HTMLElement>("[data-animate='media']");
         mediaBlocks.forEach((block) => {
-          gsap.from(block, {
+          const animationConfig = {
             opacity: 0,
             scale: 0.97,
             duration: 1,
             ease: "power2.out",
+          } as const;
+
+          if (shouldAnimateOnLoad(block)) {
+            gsap.from(block, {
+              ...animationConfig,
+              delay: 0.16,
+            });
+            return;
+          }
+
+          gsap.from(block, {
+            ...animationConfig,
             scrollTrigger: {
               trigger: block,
-              start: "top 84%",
+              start: "top 92%",
             },
           });
         });

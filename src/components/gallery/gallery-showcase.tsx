@@ -26,7 +26,7 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
 
   return (
     <>
-      <div data-animate-group className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3">
         {tags.map((tag) => (
           <button
             key={tag}
@@ -35,11 +35,10 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
               setActiveTag(tag);
               setActiveIndex(null);
             }}
-            data-animate="item"
-            className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] transition ${
+            className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-all duration-300 ${
               activeTag === tag
-                ? "border-[var(--color-gold)] bg-[rgba(214,214,219,0.16)] text-[var(--color-ivory)]"
-                : "border-white/10 bg-white/5 text-[var(--color-mist)] hover:border-[var(--color-border)] hover:text-[var(--color-ivory)]"
+                ? "border-[rgba(243,243,245,0.52)] bg-[linear-gradient(135deg,rgba(255,255,255,0.16),rgba(214,214,219,0.2))] text-[var(--color-ivory)]"
+                : "border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] text-[rgba(243,243,245,0.82)] hover:border-[rgba(255,255,255,0.36)] hover:bg-[rgba(255,255,255,0.14)] hover:text-[var(--color-ivory)]"
             }`}
           >
             {tag}
