@@ -2,15 +2,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { navigationLinks } from "@/content/site-data";
+
+gsap.registerPlugin(useGSAP);
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -18,6 +24,77 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useGSAP(
+    () => {
+      const menu = menuRef.current;
+      const nav = navRef.current;
+
+      if (!menu || !nav) return;
+
+      const items = nav.querySelectorAll("a");
+
+      if (open) {
+        gsap.set(menu, {
+          display: "block",
+          pointerEvents: "auto",
+        });
+
+        gsap.fromTo(
+          menu,
+          {
+            opacity: 0,
+            y: -18,
+            scale: 0.98,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.32,
+            ease: "power2.out",
+          },
+        );
+
+        gsap.fromTo(
+          items,
+          {
+            opacity: 0,
+            y: 18,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.28,
+            stagger: 0.06,
+            ease: "power2.out",
+            delay: 0.04,
+          },
+        );
+        return;
+      }
+
+      gsap.to(menu, {
+        opacity: 0,
+        y: -14,
+        scale: 0.985,
+        duration: 0.24,
+        ease: "power2.inOut",
+        pointerEvents: "none",
+        onComplete: () => {
+          gsap.set(menu, { display: "none" });
+        },
+      });
+    },
+    { dependencies: [open] },
+  );
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
@@ -74,35 +151,40 @@ export function SiteHeader() {
           type="button"
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-ivory)] lg:hidden"
           onClick={() => setOpen((value) => !value)}
-          aria-label="Abrir navegacion"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Cerrar navegacion" : "Abrir navegacion"}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
 
-      {open ? (
-        <div className="mx-auto mt-3 max-w-7xl rounded-[2rem] border border-[var(--color-border)] bg-black/90 p-6 backdrop-blur-xl lg:hidden">
-          <nav className="flex flex-col gap-4 text-base text-[var(--color-mist)]">
-            {navigationLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="hover:text-[var(--color-ivory)]"
-              >
-                {link.label}
-              </Link>
-            ))}
+      <div
+        id="mobile-navigation"
+        ref={menuRef}
+        className="mx-auto mt-3 hidden max-w-7xl rounded-[2rem] border border-[var(--color-border)] bg-black/90 p-6 opacity-0 backdrop-blur-xl lg:hidden"
+        style={{ pointerEvents: "none" }}
+      >
+        <nav ref={navRef} className="flex flex-col gap-4 text-base text-[var(--color-mist)]">
+          {navigationLinks.map((link) => (
             <Link
-              href="/contact"
+              key={link.href}
+              href={link.href}
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(182,182,188,0.96))] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-black"
+              className="hover:text-[var(--color-ivory)]"
             >
-              Solicitar Consulta
+              {link.label}
             </Link>
-          </nav>
-        </div>
-      ) : null}
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="mt-2 rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(182,182,188,0.96))] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-black"
+          >
+            Solicitar Consulta
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }
