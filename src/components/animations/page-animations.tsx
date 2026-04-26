@@ -145,19 +145,6 @@ export function PageAnimations({ children }: PropsWithChildren) {
           });
         });
 
-        const parallaxMedia = gsap.utils.toArray<HTMLElement>("[data-animate='parallax']");
-        parallaxMedia.forEach((mediaBlock) => {
-          gsap.to(mediaBlock, {
-            yPercent: 8,
-            ease: "none",
-            scrollTrigger: {
-              trigger: mediaBlock,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          });
-        });
       });
 
       return () => media.revert();

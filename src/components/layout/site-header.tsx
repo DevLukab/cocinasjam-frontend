@@ -117,7 +117,7 @@ export function SiteHeader() {
             />
           </span>
           <div>
-            <div className="font-display text-2xl leading-none tracking-[0.18em] text-[#f3eee4] uppercase">
+            <div className="font-brand text-2xl leading-none tracking-[0.18em] text-[#f3eee4] uppercase">
               COCINASJAM
             </div>
             <div className="text-[10px] uppercase tracking-[0.38em] text-[#c8c1b4]">

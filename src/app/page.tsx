@@ -17,16 +17,16 @@ export default async function HomePage() {
   return (
     <PageAnimations>
       <div className="pb-20 pt-28 sm:pt-32">
-        <section className="luxury-shell grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <section className="luxury-shell grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div
             data-animate="hero-shell"
-            className="relative overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(255,255,255,0.08),_rgba(255,255,255,0.02))] px-7 py-12 shadow-[0_40px_120px_rgba(0,0,0,0.42)] sm:px-10 sm:py-14 lg:min-h-[40rem] lg:rounded-[2.5rem]"
+            className="relative overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(255,255,255,0.08),_rgba(255,255,255,0.02))] px-7 py-10 shadow-[0_40px_120px_rgba(0,0,0,0.42)] sm:px-10 sm:py-12 lg:min-h-[36rem] lg:rounded-[2.5rem]"
           >
             <div className="hero-grid absolute inset-0 opacity-25" />
-            <div data-animate="hero-copy" className="relative max-w-2xl space-y-8">
+            <div data-animate="hero-copy" className="relative max-w-[36rem] space-y-7">
               <p className="eyebrow">Instalación y reforma de cocinas</p>
               <div className="space-y-5">
-                <h1 className="font-display text-6xl leading-[0.95] text-[var(--color-ivory)] sm:text-7xl lg:text-8xl">
+                <h1 className="font-display text-[clamp(3.5rem,4.7vw,4.75rem)] font-medium leading-[0.98] text-[var(--color-ivory)] sm:text-[clamp(4rem,4.9vw,5rem)] lg:text-[clamp(4.25rem,4.25vw,5rem)]">
                   Cocinas bien pensadas, ejecutadas con precisión.
                 </h1>
                 <p className="max-w-xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
@@ -51,20 +51,25 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div data-animate="hero-image" className="relative overflow-hidden rounded-[2rem] border border-white/10">
-            <div data-animate="parallax" className="relative h-[28rem] sm:h-[34rem] lg:h-[40rem]">
-              <Image
-                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=80"
-                alt="Muestra de proyecto de cocina terminado"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 45vw"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(10,9,8,0.05)_0%,_rgba(10,9,8,0.22)_40%,_rgba(10,9,8,0.85)_100%)]" />
-              <div className="absolute inset-x-0 bottom-0 p-7 sm:p-8">
-                <p className="eyebrow">Acabado distintivo</p>
-                <p className="font-display text-4xl text-[var(--color-ivory)]">Piedra, carpintería e iluminación resueltas como una sola composición.</p>
+          <div
+            data-animate="hero-image"
+            className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black sm:h-[34rem] lg:h-[36rem]"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=80"
+              alt="Muestra de proyecto de cocina terminado"
+              fill
+              priority
+              className="inset-0 object-cover object-top"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(10,9,8,0.02)_0%,_rgba(10,9,8,0.04)_48%,_rgba(10,9,8,0.46)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+              <div className="inline-flex max-w-[24rem] flex-col gap-1 rounded-2xl border border-white/10 bg-black/45 px-5 py-4 font-sans backdrop-blur-md">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">Acabado distintivo</p>
+                <p className="text-sm leading-6 text-[var(--color-ivory)] sm:text-base">
+                  Piedra, carpintería e iluminación coordinadas en una sola composición.
+                </p>
               </div>
             </div>
           </div>
