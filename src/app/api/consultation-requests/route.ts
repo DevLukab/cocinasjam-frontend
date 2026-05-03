@@ -39,7 +39,7 @@ function buildConfirmationTemplate(fullName: string, hasEmbeddedLogo: boolean): 
     subject: "Hemos recibido tu consulta - Cocinas JAM",
     text: `${contactName}, hemos recibido tu consulta correctamente. Nuestro equipo revisara tu solicitud y te contactara lo antes posible.`,
     html: `
-      <div style="margin:0;padding:24px;background:#07080f;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e8e9ee;">
+      <div style="margin:0;padding:24px;background:#07080f;font-family:Poppins,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e8e9ee;">
         <div style="max-width:640px;margin:0 auto;border-radius:24px;border:1px solid rgba(255,255,255,0.12);background:linear-gradient(140deg,#0f111a 0%,#0a0c13 45%,#06070b 100%);padding:40px 30px;">
           <div style="text-align:center;">
             ${logoBlock}

@@ -17,7 +17,7 @@ const selectIconClassName =
   "pointer-events-none absolute right-4 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-mist)] opacity-80";
 
 const fieldLabelClassName =
-  "grid gap-2 text-xs uppercase tracking-[0.22em] text-[var(--color-mist)]";
+  "caps-label-tight grid gap-2 text-[var(--color-mist)]";
 
 const optionGroupClassName =
   "rounded-[1.25rem] border border-white/10 bg-black/20 p-4 text-sm normal-case tracking-normal text-[var(--color-ivory)]";
@@ -28,7 +28,7 @@ const optionControlClassName =
   "mt-1 h-4 w-4 accent-[var(--color-gold)]";
 
 const sectionTitleClassName =
-  "text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]";
+  "caps-micro text-[var(--color-gold)]";
 
 export function BookingInquiryForm({
   title,
@@ -78,7 +78,7 @@ export function BookingInquiryForm({
   return (
     <div className="panel rounded-[2rem] p-6 sm:p-8">
       <p className="eyebrow">Formulario de consulta</p>
-      <h2 className="mt-4 font-display text-5xl text-[var(--color-ivory)]">{title}</h2>
+      <h2 className="mt-4 font-display display-title text-5xl text-[var(--color-ivory)]">{title}</h2>
       <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--color-mist)]">{description}</p>
 
       <form className="mt-8 grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
@@ -274,7 +274,7 @@ export function BookingInquiryForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-2 inline-flex justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] px-6 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-black sm:col-span-2"
+          className="cta-pill mt-2 inline-flex justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] text-black sm:col-span-2"
         >
           {isSubmitting ? "Enviando..." : buttonLabel}
         </button>
@@ -308,7 +308,7 @@ export function BookingInquiryForm({
               </span>
               <div className="space-y-1">
                 <p
-                  className={`text-[11px] uppercase tracking-[0.22em] ${
+                  className={`caps-micro ${
                     statusType === "success" ? "text-[var(--color-gold)]" : "text-[#f6b9b9]"
                   }`}
                 >

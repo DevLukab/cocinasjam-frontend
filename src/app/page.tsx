@@ -26,7 +26,7 @@ export default async function HomePage() {
             <div data-animate="hero-copy" className="relative max-w-[36rem] space-y-7">
               <p className="eyebrow">Instalación y reforma de cocinas</p>
               <div className="space-y-5">
-                <h1 className="font-display text-[clamp(3.5rem,4.7vw,4.75rem)] font-medium leading-[0.98] text-[var(--color-ivory)] sm:text-[clamp(4rem,4.9vw,5rem)] lg:text-[clamp(4.25rem,4.25vw,5rem)]">
+                <h1 className="font-display display-hero text-[clamp(3.35rem,4.55vw,4.7rem)] font-medium text-[var(--color-ivory)] sm:text-[clamp(3.9rem,4.8vw,4.95rem)] lg:text-[clamp(4.1rem,4.15vw,4.9rem)]">
                   Cocinas bien pensadas, ejecutadas con precisión.
                 </h1>
                 <p className="max-w-xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
@@ -36,14 +36,14 @@ export default async function HomePage() {
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/gallery"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] px-6 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-black"
+                  className="cta-pill inline-flex items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] text-black"
                 >
                   Ver Nuestro Trabajo
                   <ArrowRight className="size-4" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ivory)] hover:border-[var(--color-border)] hover:bg-white/5"
+                  className="cta-pill inline-flex items-center justify-center rounded-full border border-white/15 text-[var(--color-ivory)] hover:border-[var(--color-border)] hover:bg-white/5"
                 >
                   Solicitar una consulta
                 </Link>
@@ -66,7 +66,7 @@ export default async function HomePage() {
             <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(10,9,8,0.02)_0%,_rgba(10,9,8,0.04)_48%,_rgba(10,9,8,0.46)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
               <div className="inline-flex max-w-[24rem] flex-col gap-1 rounded-2xl border border-white/10 bg-black/45 px-5 py-4 font-sans backdrop-blur-md">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">Acabado distintivo</p>
+                <p className="caps-micro text-[var(--color-gold)]">Acabado distintivo</p>
                 <p className="text-sm leading-6 text-[var(--color-ivory)] sm:text-base">
                   Piedra, carpintería e iluminación coordinadas en una sola composición.
                 </p>
@@ -81,7 +81,7 @@ export default async function HomePage() {
               <div
                 key={pillar}
                 data-animate="item"
-                className="rounded-[1.5rem] border border-white/8 bg-white/5 px-5 py-6 text-sm uppercase tracking-[0.18em] text-[var(--color-ivory)]"
+                className="caps-label rounded-[1.5rem] border border-white/8 bg-white/5 px-5 py-6 text-[var(--color-ivory)]"
               >
                 {pillar}
               </div>
@@ -93,9 +93,9 @@ export default async function HomePage() {
           <div data-animate="reveal" className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-3">
               <p className="eyebrow">Estilos destacados</p>
-              <h2 className="font-display text-5xl text-[var(--color-ivory)] sm:text-6xl">Distintas formas de entender una cocina, resueltas con precisión.</h2>
+              <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">Distintas formas de entender una cocina, resueltas con precisión.</h2>
             </div>
-            <Link href="/kitchen-styles" className="text-sm uppercase tracking-[0.22em] text-[var(--color-gold)] hover:text-[var(--color-ivory)]">
+            <Link href="/kitchen-styles" className="caps-label text-[var(--color-gold)] hover:text-[var(--color-ivory)]">
               Explorar estilos de cocina
             </Link>
           </div>
@@ -107,7 +107,7 @@ export default async function HomePage() {
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.04)_0%,_rgba(0,0,0,0.18)_38%,_rgba(0,0,0,0.86)_100%)]" />
                   <div className="absolute inset-x-0 bottom-0 p-6">
                     <div className="rounded-[1.5rem] bg-black/35 p-5 backdrop-blur-[2px]">
-                      <h3 className="font-display text-4xl text-[var(--color-ivory)]">{style.name}</h3>
+                      <h3 className="font-display display-title text-4xl text-[var(--color-ivory)]">{style.name}</h3>
                       <p className="mt-3 text-base leading-8 text-[rgba(244,238,230,0.9)]">{style.description}</p>
                     </div>
                   </div>
@@ -120,13 +120,13 @@ export default async function HomePage() {
         <section className="luxury-shell mt-24 grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
           <div data-animate="reveal" className="space-y-4">
             <p className="eyebrow">Nuestro proceso</p>
-            <h2 className="font-display text-5xl text-[var(--color-ivory)] sm:text-6xl">Una ruta clara desde la idea inicial hasta la entrega final.</h2>
+            <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">Una ruta clara desde la idea inicial hasta la entrega final.</h2>
           </div>
           <div data-animate-group className="grid gap-5 md:grid-cols-3">
             {processSteps.map((step) => (
               <div key={step.id} data-animate="item" className="panel rounded-[1.75rem] p-6">
                 <p className="text-sm text-[var(--color-gold)]">{String(step.stepNumber).padStart(2, "0")}</p>
-                <h3 className="mt-4 font-display text-3xl text-[var(--color-ivory)]">{step.title}</h3>
+                <h3 className="mt-4 font-display display-title text-3xl text-[var(--color-ivory)]">{step.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">{getProcessSummary(step.body)}</p>
               </div>
             ))}
@@ -139,7 +139,7 @@ export default async function HomePage() {
               <p className="font-display text-4xl leading-tight text-[var(--color-ivory)] sm:text-5xl">
                 “{testimonial.quote}”
               </p>
-              <footer className="mt-6 text-sm uppercase tracking-[0.22em] text-[var(--color-gold)]">{testimonial.author}</footer>
+              <footer className="caps-label mt-6 text-[var(--color-gold)]">{testimonial.author}</footer>
             </blockquote>
           ))}
         </section>
@@ -150,15 +150,15 @@ export default async function HomePage() {
             className="overflow-hidden rounded-[2.5rem] border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(255,255,255,0.08),_rgba(255,255,255,0.03),_rgba(120,120,128,0.08))] px-8 py-12 text-center sm:px-12 sm:py-16"
           >
             <p className="eyebrow">Empieza tu proyecto</p>
-            <h2 className="mt-4 font-display text-5xl text-[var(--color-ivory)] sm:text-6xl">¿Listo para dar forma a tu próxima cocina?</h2>
+            <h2 className="mt-4 font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">¿Listo para dar forma a tu próxima cocina?</h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-[var(--color-mist)]">
               Comparte tus planos, dimensiones y necesidades del espacio. Definiremos contigo el alcance, la planificación y la mejor forma de abordar el proyecto.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href="/gallery" className="inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-black px-6 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ivory)] hover:bg-black/80">
+              <Link href="/gallery" className="cta-pill inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-black text-[var(--color-ivory)] hover:bg-black/80">
                 Ver proyectos
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-black/10 bg-[var(--color-ivory)] px-6 py-4 text-xs font-semibold uppercase tracking-[0.24em] text-black hover:bg-[#dedee3]">
+              <Link href="/contact" className="cta-pill inline-flex items-center justify-center rounded-full border border-black/10 bg-[var(--color-ivory)] text-black hover:bg-[#dedee3]">
                 Solicitar consulta
               </Link>
             </div>

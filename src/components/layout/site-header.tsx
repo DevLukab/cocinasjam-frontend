@@ -116,11 +116,11 @@ export function SiteHeader() {
               className="h-full w-full rounded-full object-cover"
             />
           </span>
-          <div>
-            <div className="font-brand text-2xl leading-none tracking-[0.18em] text-[#f3eee4] uppercase">
+          <div className="space-y-1">
+            <div className="font-brand text-[1.7rem] leading-none tracking-[0.14em] text-[#f3eee4] uppercase sm:text-[1.8rem]">
               COCINASJAM
             </div>
-            <div className="text-[10px] uppercase tracking-[0.38em] text-[#c8c1b4]">
+            <div className="caps-micro text-[#c8c1b4]">
               Instalación de Cocinas
             </div>
           </div>
@@ -141,9 +141,9 @@ export function SiteHeader() {
           })}
           <Link
             href="/contact"
-            className="rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(182,182,188,0.96))] px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:-translate-y-0.5"
+            className="inline-flex min-h-[3.2rem] items-center justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(182,182,188,0.96))] px-6 py-3 text-[0.92rem] font-medium tracking-[0.01em] text-black transition-transform hover:-translate-y-0.5"
           >
-            Solicitar Consulta
+            Solicitar consulta
           </Link>
         </nav>
 
@@ -179,9 +179,9 @@ export function SiteHeader() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-2 rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(182,182,188,0.96))] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em] text-black"
+            className="mt-2 inline-flex min-h-[3.2rem] items-center justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(182,182,188,0.96))] px-6 py-3 text-center text-[0.92rem] font-medium tracking-[0.01em] text-black"
           >
-            Solicitar Consulta
+            Solicitar consulta
           </Link>
         </nav>
       </div>

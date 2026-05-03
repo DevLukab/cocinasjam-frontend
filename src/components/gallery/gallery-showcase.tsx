@@ -44,7 +44,7 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
               setActiveTag(tag);
               setActiveIndex(null);
             }}
-            className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-all duration-300 ${
+            className={`caps-label-tight rounded-full border px-4 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.16)] transition-all duration-300 ${
               activeTag === tag
                 ? "border-[rgba(243,243,245,0.52)] bg-[linear-gradient(135deg,rgba(255,255,255,0.16),rgba(214,214,219,0.2))] text-[var(--color-ivory)]"
                 : "border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] text-[rgba(243,243,245,0.82)] hover:border-[rgba(255,255,255,0.36)] hover:bg-[rgba(255,255,255,0.14)] hover:text-[var(--color-ivory)]"
@@ -75,10 +75,10 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-[var(--color-gold)]">
+                <p className="caps-micro mb-2 text-[var(--color-gold)]">
                   {item.tag}
                 </p>
-                <p className="font-display text-3xl text-[var(--color-ivory)]">{item.title}</p>
+                <p className="font-display display-title text-3xl text-[var(--color-ivory)]">{item.title}</p>
               </div>
             </div>
           </button>
@@ -124,7 +124,7 @@ export function GalleryShowcase({ tags, items }: GalleryShowcaseProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                 <p className="eyebrow">{activeItem.tag}</p>
-                <h3 className="font-display text-4xl text-[var(--color-ivory)] sm:text-5xl">
+                <h3 className="font-display display-title text-4xl text-[var(--color-ivory)] sm:text-5xl">
                   {activeItem.title}
                 </h3>
               </div>

@@ -10,7 +10,7 @@ export async function SiteFooter() {
       <div className="luxury-shell grid gap-10 py-14 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div className="space-y-4">
           <p className="eyebrow">COCINASJAM</p>
-          <h2 className="font-display text-4xl text-[var(--color-ivory)] sm:text-5xl">
+          <h2 className="font-display display-title text-4xl text-[var(--color-ivory)] sm:text-5xl">
             Soluciones de cocina bien pensadas, bien coordinadas y bien acabadas.
           </h2>
           <p className="max-w-xl text-sm leading-7 text-[var(--color-mist)]">

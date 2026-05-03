@@ -2,10 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@theme inline {
-  --font-sans: var(--font-manrope);
-}
-
 :root {
   --color-obsidian: #090806;
   --color-charcoal: #121214;
@@ -18,72 +14,124 @@
   --color-mist: rgba(243, 243, 245, 0.74);
 }
 
-@layer base {
-  * {
-    @apply border-transparent;
-  }
+* {
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+body {
+  background-color: var(--color-obsidian);
+  color: var(--color-ivory);
+}
 
-  body {
-    @apply min-h-screen font-sans;
-    background-color: var(--color-obsidian);
-    color: var(--color-ivory);
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  main :is(a.inline-flex, button, input, textarea, select, label, option) {
-    font-family: var(--font-manrope), sans-serif;
-  }
+a {
+  transition: color 0.3s ease;
+}
 
-  a {
-    @apply transition-colors duration-300;
-  }
+::selection {
+  background: rgba(210, 210, 216, 0.32);
+  color: #ffffff;
+}
 
-  ::selection {
-    background: rgba(210, 210, 216, 0.32);
-    color: #ffffff;
+.font-display,
+.font-brand,
+.font-editorial {
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+}
+
+.luxury-shell {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .luxury-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
-@layer utilities {
-  .font-display {
-    font-family: var(--font-alegreya), serif;
-    letter-spacing: 0;
-  }
-
-  .font-brand {
-    font-family: var(--font-cormorant), serif;
-  }
-
-  .font-editorial {
-    font-family: var(--font-alegreya), serif;
-  }
-
+@media (min-width: 1024px) {
   .luxury-shell {
-    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
+}
 
-  .eyebrow {
-    font-family: var(--font-manrope), sans-serif;
-    @apply text-xs font-semibold uppercase tracking-[0.35em] text-[var(--color-gold)];
-  }
+.eyebrow {
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  line-height: 1.35;
+  color: var(--color-gold);
+}
 
-  .panel {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    border: 1px solid var(--color-border);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-  }
+.caps-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1.3;
+}
 
-  .gold-ring {
-    box-shadow: 0 0 0 1px rgba(214, 214, 219, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-  }
+.caps-label-tight {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+}
 
-  .hero-grid {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
+.caps-micro {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  line-height: 1.35;
+}
+
+.cta-pill {
+  min-height: 3.35rem;
+  padding: 0.9rem 1.7rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.1;
+}
+
+.display-hero {
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+}
+
+.display-title {
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--color-border);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.gold-ring {
+  box-shadow: 0 0 0 1px rgba(214, 214, 219, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
