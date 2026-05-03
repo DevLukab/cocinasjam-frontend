@@ -46,7 +46,7 @@ export default async function ProcessPage() {
             <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--color-mist)]">
               Tanto si ya tienes planos de cocina como si solo cuentas con un moodboard y medidas del espacio, podemos asesorarte sobre secuencias, viabilidad y el formato de consulta adecuado.
             </p>
-            <Link href="/contact" className="cta-pill mt-8 inline-flex rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] text-black">
+            <Link href="/contact" className="cta-pill mt-8 inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] text-center text-black">
               Solicitar una consulta
             </Link>
           </div>
