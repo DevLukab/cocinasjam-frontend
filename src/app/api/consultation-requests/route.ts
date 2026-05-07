@@ -57,6 +57,67 @@ function buildConfirmationTemplate(fullName: string, hasEmbeddedLogo: boolean): 
   };
 }
 
+function buildNotificationTemplate(fields: {
+  fullName: string;
+  phone: string;
+  email?: string;
+  location?: string;
+  clientType: string;
+  serviceType: string;
+  projectStatus: string;
+  budget: string;
+  timeline: string;
+  homeType: string;
+  measures?: string;
+  comments?: string;
+  attachmentCount: number;
+}): MailTemplate {
+  const rows = [
+    ["Nombre", fields.fullName],
+    ["Teléfono", fields.phone],
+    ["Email", fields.email],
+    ["Ubicación", fields.location],
+    ["Tipo de cliente", fields.clientType],
+    ["Tipo de servicio", fields.serviceType],
+    ["Estado del proyecto", fields.projectStatus],
+    ["Presupuesto", fields.budget],
+    ["Fecha estimada", fields.timeline],
+    ["Tipo de vivienda", fields.homeType],
+    ["Medidas aproximadas", fields.measures],
+    ["Comentarios", fields.comments],
+    ["Archivos adjuntos", fields.attachmentCount > 0 ? `${fields.attachmentCount} archivo(s) guardado(s) en Strapi` : "Sin adjuntos"],
+  ].filter((row): row is [string, string] => Boolean(row[1]));
+
+  const text = rows.map(([label, value]) => `${label}: ${value}`).join("\n");
+  const htmlRows = rows
+    .map(
+      ([label, value]) => `
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.1);color:#9fa3b2;font-size:13px;">${label}</td>
+          <td style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.1);color:#f6f7fb;font-size:14px;line-height:1.55;">${value}</td>
+        </tr>
+      `,
+    )
+    .join("");
+
+  return {
+    subject: `Nueva solicitud de cocina - ${fields.fullName}`,
+    text: `Nueva solicitud recibida desde la web de Cocinas JAM.\n\n${text}`,
+    html: `
+      <div style="margin:0;padding:24px;background:#07080f;font-family:Poppins,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e8e9ee;">
+        <div style="max-width:720px;margin:0 auto;border-radius:24px;border:1px solid rgba(255,255,255,0.12);background:linear-gradient(140deg,#0f111a 0%,#0a0c13 45%,#06070b 100%);padding:34px 28px;">
+          <p style="margin:0;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#9fa3b2;">Nueva solicitud web</p>
+          <h1 style="margin:14px 0 18px 0;font-size:28px;line-height:1.18;color:#f6f7fb;font-weight:500;">${fields.fullName} ha enviado el formulario.</h1>
+          <table style="width:100%;border-collapse:collapse;background:rgba(255,255,255,0.04);border-radius:16px;overflow:hidden;">
+            <tbody>${htmlRows}</tbody>
+          </table>
+          <p style="margin:22px 0 0 0;font-size:14px;line-height:1.7;color:#aab0bf;">Los archivos adjuntos, si los hay, quedan guardados junto a la solicitud en Strapi.</p>
+        </div>
+      </div>
+    `,
+  };
+}
+
 async function getLogoAttachment() {
   try {
     const logoPath = path.join(process.cwd(), "public", "logo.jpeg");
@@ -72,13 +133,7 @@ async function getLogoAttachment() {
   }
 }
 
-async function sendConfirmationEmail({
-  to,
-  fullName,
-}: {
-  to: string;
-  fullName: string;
-}) {
+function getSmtpConfig() {
   const host = process.env.SMTP_HOST;
   const portValue = process.env.SMTP_PORT;
   const user = process.env.SMTP_USER;
@@ -86,40 +141,96 @@ async function sendConfirmationEmail({
   const from = user;
 
   if (!host || !portValue || !user || !pass || !from) {
-    return;
+    return null;
   }
 
   const port = Number(portValue);
 
   if (!Number.isFinite(port)) {
-    return;
+    return null;
   }
 
   const secure = process.env.SMTP_SECURE
     ? process.env.SMTP_SECURE === "true"
     : port === 465;
 
-  const replyTo = user;
+  return {
+    host,
+    port,
+    user,
+    pass,
+    from,
+    secure,
+  };
+}
+
+async function sendConfirmationEmail({
+  to,
+  fullName,
+}: {
+  to: string;
+  fullName: string;
+}) {
+  const smtpConfig = getSmtpConfig();
+
+  if (!smtpConfig) {
+    return;
+  }
+
+  const replyTo = smtpConfig.user;
   const logoAttachment = await getLogoAttachment();
   const template = buildConfirmationTemplate(fullName, Boolean(logoAttachment));
   const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure,
+    host: smtpConfig.host,
+    port: smtpConfig.port,
+    secure: smtpConfig.secure,
     auth: {
-      user,
-      pass,
+      user: smtpConfig.user,
+      pass: smtpConfig.pass,
     },
   });
 
   await transporter.sendMail({
-    from,
+    from: smtpConfig.from,
     to,
     replyTo,
     subject: template.subject,
     html: template.html,
     text: template.text,
     attachments: logoAttachment ? [logoAttachment] : undefined,
+  });
+}
+
+async function sendNotificationEmail({
+  fields,
+}: {
+  fields: Parameters<typeof buildNotificationTemplate>[0];
+}) {
+  const smtpConfig = getSmtpConfig();
+  const to = process.env.CONTACT_NOTIFICATION_EMAIL || smtpConfig?.user;
+
+  if (!smtpConfig || !to) {
+    return;
+  }
+
+  const template = buildNotificationTemplate(fields);
+  const transporter = nodemailer.createTransport({
+    host: smtpConfig.host,
+    port: smtpConfig.port,
+    secure: smtpConfig.secure,
+    auth: {
+      user: smtpConfig.user,
+      pass: smtpConfig.pass,
+    },
+  });
+
+  await transporter.sendMail({
+    from: smtpConfig.from,
+    to,
+    replyTo: fields.email || smtpConfig.user,
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
   });
 }
 
@@ -172,6 +283,7 @@ export async function POST(request: Request) {
 
     const fullName = getRequiredString(formData, "name");
     const phone = getRequiredString(formData, "phone");
+    const email = getRequiredString(formData, "email");
     const clientType = getRequiredString(formData, "clientType");
     const serviceType = getRequiredString(formData, "serviceType");
     const projectStatus = getRequiredString(formData, "projectStatus");
@@ -183,6 +295,7 @@ export async function POST(request: Request) {
     if (
       !fullName ||
       !phone ||
+      !email ||
       !clientType ||
       !serviceType ||
       !projectStatus ||
@@ -211,14 +324,11 @@ export async function POST(request: Request) {
       housing_type: homeType,
     };
 
-    const email = getOptionalString(formData, "email");
     const location = getOptionalString(formData, "location");
     const measures = getOptionalString(formData, "measurements");
     const comments = getOptionalString(formData, "notes");
 
-    if (email) {
-      payloadData.mail = email;
-    }
+    payloadData.mail = email;
 
     if (location) {
       payloadData.location = location;
@@ -258,14 +368,33 @@ export async function POST(request: Request) {
       );
     }
 
-    if (email) {
-      try {
-        await sendConfirmationEmail({
-          to: email,
+    try {
+      await sendNotificationEmail({
+        fields: {
           fullName,
-        });
-      } catch {
-      }
+          phone,
+          email,
+          location,
+          clientType,
+          serviceType,
+          projectStatus,
+          budget,
+          timeline,
+          homeType,
+          measures,
+          comments,
+          attachmentCount: attachmentIds.length,
+        },
+      });
+    } catch {
+    }
+
+    try {
+      await sendConfirmationEmail({
+        to: email,
+        fullName,
+      });
+    } catch {
     }
 
     return NextResponse.json({ ok: true });

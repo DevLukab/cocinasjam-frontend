@@ -106,12 +106,13 @@ export function BookingInquiryForm({
           />
         </label>
         <label className={fieldLabelClassName}>
-          Email (opcional)
+          Email (obligatorio)
           <input
             type="email"
             name="email"
             placeholder="tu@correo.com"
             className={inputClassName}
+            required
           />
         </label>
         <label className={fieldLabelClassName}>
