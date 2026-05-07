@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageAnimations } from "@/components/animations/page-animations";
-import { founderProfile, testimonials, whyChooseReasons } from "@/content/site-data";
+import { founderProfile, installationDetails, testimonials, whyChooseReasons } from "@/content/site-data";
 import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
 import { getProcessSteps } from "@/lib/our-processes";
 
@@ -112,7 +112,7 @@ export default async function HomePage() {
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.04)_0%,_rgba(0,0,0,0.14)_52%,_rgba(0,0,0,0.48)_100%)]" />
             </div>
-            <div data-animate="hero-copy" className="hero-grid relative p-7 sm:p-10 lg:p-12">
+            <div data-animate="reveal" className="hero-grid relative p-7 sm:p-10 lg:p-12">
               <div className="relative max-w-2xl space-y-6">
                 <p className="eyebrow">{founderProfile.eyebrow}</p>
                 <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">
@@ -124,6 +124,45 @@ export default async function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="detalles-instalacion" className="luxury-shell mt-24 scroll-mt-32">
+          <div data-animate="reveal" className="mb-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div className="space-y-3">
+              <p className="eyebrow">{installationDetails.eyebrow}</p>
+              <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">
+                {installationDetails.title}
+              </h2>
+            </div>
+            <div className="max-w-2xl space-y-4 text-base leading-8 text-[var(--color-mist)] sm:text-lg lg:ml-auto">
+              <p>{installationDetails.intro}</p>
+              <p>{installationDetails.body}</p>
+            </div>
+          </div>
+          <div data-animate-group className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {installationDetails.steps.map((step, index) => (
+              <article
+                key={step.title}
+                data-animate="item"
+                className={`group relative min-h-[16rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black ${
+                  index === 0 ? "lg:col-span-2" : ""
+                }`}
+              >
+                <Image
+                  src={step.image}
+                  alt={step.alt}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes={index === 0 ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 1024px) 100vw, 29vw"}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.08)_0%,_rgba(0,0,0,0.22)_42%,_rgba(0,0,0,0.84)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="caps-micro text-[var(--color-gold)]">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-2 font-display display-title text-3xl text-[var(--color-ivory)]">{step.title}</h3>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 

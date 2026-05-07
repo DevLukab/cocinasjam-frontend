@@ -35,6 +35,62 @@ export const founderProfile = {
   imageAlt: "Instalador trabajando con herramientas durante un montaje",
 };
 
+export const installationDetails = {
+  eyebrow: "Proceso real de montaje",
+  title: "Detalles que no se ven, pero se notan",
+  intro:
+    "Una cocina no queda bien solo por el diseño. También depende de cómo se instala.",
+  body:
+    "En Cocinas JAM cuidamos la nivelación, los encuentros, las líneas, las aperturas y cada remate para que el resultado final esté a la altura del proyecto.",
+  steps: [
+    {
+      title: "Antes del montaje",
+      image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80",
+      alt: "Zona de trabajo preparada antes de una instalación",
+    },
+    {
+      title: "Estructura de muebles",
+      image: "https://images.unsplash.com/photo-1771862956702-4e8b247e28b5?auto=format&fit=crop&w=900&q=80",
+      alt: "Estructura y herramientas durante un montaje",
+    },
+    {
+      title: "Nivelación con láser",
+      image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80",
+      alt: "Herramientas de precisión en obra",
+    },
+    {
+      title: "Instalación de columnas",
+      image: "https://images.unsplash.com/photo-1771862956702-4e8b247e28b5?auto=format&fit=crop&w=900&q=80",
+      alt: "Mobiliario de cocina durante su instalación",
+    },
+    {
+      title: "Ajuste de puertas",
+      image: "https://images.unsplash.com/photo-1632945514465-a4da3a4d21d8?auto=format&fit=crop&w=900&q=80",
+      alt: "Detalle de puertas y mobiliario de cocina",
+    },
+    {
+      title: "Integración de electrodomésticos",
+      image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80",
+      alt: "Electrodomésticos integrados en cocina",
+    },
+    {
+      title: "Detalles de zócalos",
+      image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80",
+      alt: "Remates inferiores y zócalos de una cocina",
+    },
+    {
+      title: "Iluminación",
+      image: "https://images.unsplash.com/photo-1771862956702-4e8b247e28b5?auto=format&fit=crop&w=900&q=80",
+      alt: "Iluminación coordinada en cocina",
+    },
+    {
+      title: "Resultado final",
+      image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80",
+      alt: "Cocina terminada después de la instalación",
+    },
+  ],
+};
+
 export const kitchenStyles = [
   {
     name: "Minimalismo Moderno",
