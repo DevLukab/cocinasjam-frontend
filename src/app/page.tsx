@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageAnimations } from "@/components/animations/page-animations";
-import { founderProfile, installationDetails, testimonials, whyChooseReasons } from "@/content/site-data";
+import { audienceProfiles, founderProfile, installationDetails, testimonials, whyChooseReasons } from "@/content/site-data";
 import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
 import { getProcessSteps } from "@/lib/our-processes";
 
@@ -95,6 +95,27 @@ export default async function HomePage() {
                 <p className="text-sm font-medium text-[var(--color-gold)]">{String(index + 1).padStart(2, "0")}</p>
                 <h3 className="mt-4 font-display display-title text-3xl text-[var(--color-ivory)] sm:text-4xl">{reason.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-[var(--color-mist)] sm:text-base">{reason.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="publicos" className="luxury-shell mt-20 scroll-mt-32">
+          <div data-animate="reveal" className="mb-8 max-w-3xl space-y-3">
+            <p className="eyebrow">Soluciones por perfil</p>
+            <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">Instalación clara para particulares y equipos profesionales.</h2>
+          </div>
+          <div data-animate-group className="grid gap-5 lg:grid-cols-2">
+            {audienceProfiles.map((profile) => (
+              <article key={profile.title} data-animate="item" className="panel rounded-[2rem] p-7 sm:p-9">
+                <h3 className="font-display display-title text-4xl text-[var(--color-ivory)] sm:text-5xl">{profile.title}</h3>
+                <p className="mt-5 text-base leading-8 text-[var(--color-mist)]">{profile.body}</p>
+                <Link
+                  href={profile.href}
+                  className="cta-pill mt-7 inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(248,248,250,0.96),_rgba(180,180,186,0.96))] text-center text-black"
+                >
+                  {profile.cta}
+                </Link>
               </article>
             ))}
           </div>

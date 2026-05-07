@@ -24,6 +24,23 @@ export const whyChooseReasons = [
   },
 ];
 
+export const audienceProfiles = [
+  {
+    title: "Para particulares",
+    body:
+      "Te ayudamos a que la instalación de tu cocina sea clara, cuidada y sin sorpresas. Revisamos el proyecto, coordinamos los detalles técnicos y ejecutamos el montaje con precisión.",
+    cta: "Quiero instalar mi cocina",
+    href: "/contact?cliente=particular",
+  },
+  {
+    title: "Para estudios e interioristas",
+    body:
+      "Nos integramos en tu proyecto como equipo técnico de instalación, respetando diseño, materiales, planificación y nivel de acabado. Cuidamos la ejecución para que tu idea llegue bien al resultado final.",
+    cta: "Soy estudio y busco instalador",
+    href: "/contact?cliente=estudio",
+  },
+];
+
 export const founderProfile = {
   eyebrow: "Quién está detrás de Cocinas JAM",
   title: "Soy José, instalador especializado en cocinas a medida.",
