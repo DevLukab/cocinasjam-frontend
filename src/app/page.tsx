@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageAnimations } from "@/components/animations/page-animations";
-import { testimonials, whyChooseReasons } from "@/content/site-data";
+import { founderProfile, testimonials, whyChooseReasons } from "@/content/site-data";
 import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
 import { getProcessSteps } from "@/lib/our-processes";
 
@@ -97,6 +97,33 @@ export default async function HomePage() {
                 <p className="mt-4 text-sm leading-7 text-[var(--color-mist)] sm:text-base">{reason.body}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="luxury-shell mt-20">
+          <div className="grid overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[linear-gradient(135deg,_rgba(255,255,255,0.08),_rgba(255,255,255,0.03))] lg:grid-cols-[0.95fr_1.05fr]">
+            <div data-animate="reveal" className="relative min-h-[22rem] lg:min-h-[34rem]">
+              <Image
+                src={founderProfile.image}
+                alt={founderProfile.imageAlt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 42vw"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(0,0,0,0.04)_0%,_rgba(0,0,0,0.14)_52%,_rgba(0,0,0,0.48)_100%)]" />
+            </div>
+            <div data-animate="hero-copy" className="hero-grid relative p-7 sm:p-10 lg:p-12">
+              <div className="relative max-w-2xl space-y-6">
+                <p className="eyebrow">{founderProfile.eyebrow}</p>
+                <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">
+                  {founderProfile.title}
+                </h2>
+                <div className="space-y-5 text-base leading-8 text-[var(--color-mist)] sm:text-lg">
+                  <p>{founderProfile.body}</p>
+                  <p>{founderProfile.closing}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

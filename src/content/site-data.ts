@@ -24,6 +24,17 @@ export const whyChooseReasons = [
   },
 ];
 
+export const founderProfile = {
+  eyebrow: "Quién está detrás de Cocinas JAM",
+  title: "Soy José, instalador especializado en cocinas a medida.",
+  body:
+    "Durante más de 10 años he trabajado en proyectos donde la diferencia está en los detalles: una puerta bien alineada, un mueble perfectamente nivelado, un electrodoméstico integrado sin holguras y una instalación que respeta el diseño original.",
+  closing:
+    "Cocinas JAM nace para ofrecer un montaje profesional, cuidado y coordinado, tanto para particulares como para estudios, interioristas y marcas de mobiliario.",
+  image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=80",
+  imageAlt: "Instalador trabajando con herramientas durante un montaje",
+};
+
 export const kitchenStyles = [
   {
     name: "Minimalismo Moderno",
