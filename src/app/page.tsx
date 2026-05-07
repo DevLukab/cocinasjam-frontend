@@ -26,15 +26,15 @@ export default async function HomePage() {
             <div data-animate="hero-copy" className="relative max-w-[36rem] space-y-7">
               <p className="eyebrow">Instalación especializada de cocinas</p>
               <div className="space-y-5">
-                <h1 className="font-display display-hero text-[clamp(3.35rem,4.55vw,4.7rem)] font-medium text-[var(--color-ivory)] sm:text-[clamp(3.9rem,4.8vw,4.95rem)] lg:text-[clamp(4.1rem,4.15vw,4.9rem)]">
+                <h1 className="font-display display-hero text-[clamp(2.25rem,10.5vw,3.35rem)] font-medium text-[var(--color-ivory)] text-wrap sm:text-[clamp(3.9rem,4.8vw,4.95rem)] lg:text-[clamp(4.1rem,4.15vw,4.9rem)]">
                   Especialistas en instalación de mobiliario de cocina.
                 </h1>
                 <div className="max-w-xl space-y-4 text-base leading-8 text-[var(--color-mist)] sm:text-lg">
                   <p>
-                    Nos encargamos del montaje, ajuste, nivelación y coordinación técnica para que cada cocina quede exactamente como se ha proyectado.
+                    Montaje, ajuste, nivelación y coordinación técnica para que cada cocina quede exactamente como se ha proyectado.
                   </p>
                   <p>
-                    También podemos acompañarte en fases previas del proyecto, coordinándonos con diseñadores, estudios, proveedores y equipos de obra.
+                    También colaboramos en fases previas con diseñadores, estudios, proveedores y equipos de obra.
                   </p>
                 </div>
               </div>
