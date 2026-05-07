@@ -136,7 +136,7 @@ export default async function HomePage() {
             <div data-animate="reveal" className="hero-grid relative p-7 sm:p-10 lg:p-12">
               <div className="relative max-w-2xl space-y-6">
                 <p className="eyebrow">{founderProfile.eyebrow}</p>
-                <h2 className="font-display display-title text-[clamp(2.55rem,10vw,3rem)] text-[var(--color-ivory)] text-wrap sm:text-6xl">
+                <h2 className="font-display display-title text-[clamp(2.2rem,8.8vw,2.75rem)] text-[var(--color-ivory)] text-wrap sm:text-6xl">
                   {founderProfile.title}
                 </h2>
                 <div className="space-y-5 text-base leading-8 text-[var(--color-mist)] sm:text-lg">
