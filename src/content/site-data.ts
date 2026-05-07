@@ -6,9 +6,9 @@ export const navigationLinks = [
 ];
 
 export const trustPillars = [
-  "Más de 10 años en instalaciones y reformas",
+  "Más de 10 años instalando mobiliario de cocina",
   "Coordinación de carpintería, piedra e iluminación",
-  "Gestión integral de proyecto de principio a fin",
+  "Montaje, ajuste y nivelación de precisión",
 ];
 
 export const kitchenStyles = [

@@ -11,9 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "COCINASJAM | Instalación y Reformas de Cocina",
+  title: "COCINASJAM | Instalación de Mobiliario de Cocina",
   description:
-    "COCINASJAM desarrolla instalaciones y reformas de cocina bien resueltas, desde la planificación inicial hasta la entrega final.",
+    "COCINASJAM es especialista en instalación de mobiliario de cocina, montaje, ajuste, nivelación y coordinación técnica.",
 };
 
 export default function RootLayout({
