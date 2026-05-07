@@ -17,10 +17,6 @@ export type ContactDetails = {
   address: string;
 };
 
-function hasValue(value: string | null | undefined) {
-  return Boolean(value && value.trim().length > 0);
-}
-
 function withFallback(value: string | null | undefined, fallback: string) {
   const trimmed = value?.trim();
   return trimmed ? trimmed : fallback;

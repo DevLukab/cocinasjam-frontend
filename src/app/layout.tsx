@@ -11,9 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "COCINASJAM | Instalación de Mobiliario de Cocina",
+  title: "COCINASJAM | Instalación de Cocinas en Barcelona, Girona y Costa Brava",
   description:
-    "COCINASJAM es especialista en instalación de mobiliario de cocina, montaje, ajuste, nivelación y coordinación técnica.",
+    "Instalación de cocinas a medida en Barcelona, Girona y Costa Brava. Montaje profesional de mobiliario de cocina, integración de electrodomésticos y acabados de alta precisión.",
 };
 
 export default function RootLayout({

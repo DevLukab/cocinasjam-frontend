@@ -16,7 +16,7 @@ export const whyChooseReasons = [
   },
   {
     title: "Acabados premium",
-    body: "Cuidamos encuentros entre materiales, electrodomésticos integrados, zócalos, costados, iluminación y remates.",
+    body: "Especialistas en instalación de cocinas premium, integración de electrodomésticos y acabados de alta precisión.",
   },
   {
     title: "Experiencia real en obra",
@@ -273,7 +273,7 @@ export const galleryItems = [
 ];
 
 export const contactDetails = {
-  phone: "+44 (0)20 5555 0148",
-  email: "hello@atelierkitchens.co",
-  address: "18 Mercer Lane, Londres W1",
+  phone: "34635247990",
+  email: "info@cocinasjam.com",
+  address: "Barcelona - Girona - Costa Brava",
 };

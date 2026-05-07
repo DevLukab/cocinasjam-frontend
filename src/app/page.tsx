@@ -31,10 +31,10 @@ export default async function HomePage() {
                 </h1>
                 <div className="max-w-xl space-y-4 text-base leading-8 text-[var(--color-mist)] sm:text-lg">
                   <p>
-                    Montaje, ajuste, nivelación y coordinación técnica para que cada cocina quede exactamente como se ha proyectado.
+                    Instalación de cocinas a medida en Barcelona, Girona y Costa Brava.
                   </p>
                   <p>
-                    También colaboramos en fases previas con diseñadores, estudios, proveedores y equipos de obra.
+                    Montaje profesional de mobiliario de cocina para particulares, estudios de interiorismo y empresas de reformas en Cataluña.
                   </p>
                 </div>
               </div>

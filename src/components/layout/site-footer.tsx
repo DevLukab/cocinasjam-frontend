@@ -11,10 +11,10 @@ export async function SiteFooter() {
         <div className="space-y-4">
           <p className="eyebrow">COCINASJAM</p>
           <h2 className="font-display display-title text-4xl text-[var(--color-ivory)] sm:text-5xl">
-            Soluciones de cocina bien pensadas, bien coordinadas y bien acabadas.
+            Instalación de cocinas a medida en Barcelona, Girona y Costa Brava.
           </h2>
           <p className="max-w-xl text-sm leading-7 text-[var(--color-mist)]">
-            Instalación, renovación y coordinación de proyecto para propietarios, interioristas y promotores que buscan un proceso claro y un resultado sólido.
+            Montaje profesional de mobiliario de cocina para particulares, estudios de interiorismo y empresas de reformas en Cataluña, con integración de electrodomésticos y acabados de alta precisión.
           </p>
         </div>
 
