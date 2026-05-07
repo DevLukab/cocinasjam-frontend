@@ -5,10 +5,23 @@ export const navigationLinks = [
   { href: "/gallery", label: "Galería" },
 ];
 
-export const trustPillars = [
-  "Más de 10 años instalando mobiliario de cocina",
-  "Coordinación de carpintería, piedra e iluminación",
-  "Montaje, ajuste y nivelación de precisión",
+export const whyChooseReasons = [
+  {
+    title: "Precisión en cada ajuste",
+    body: "Nivelación, alineación de puertas, encajes, remates y detalles finales para un resultado limpio y profesional.",
+  },
+  {
+    title: "Coordinación con estudios y proveedores",
+    body: "Trabajamos junto a interioristas, arquitectos, marcas de mobiliario y equipos de obra para evitar errores en la instalación.",
+  },
+  {
+    title: "Acabados premium",
+    body: "Cuidamos encuentros entre materiales, electrodomésticos integrados, zócalos, costados, iluminación y remates.",
+  },
+  {
+    title: "Experiencia real en obra",
+    body: "Más de 10 años resolviendo instalaciones de cocina en viviendas particulares, reformas y proyectos de alto nivel.",
+  },
 ];
 
 export const kitchenStyles = [

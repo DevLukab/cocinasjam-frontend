@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageAnimations } from "@/components/animations/page-animations";
-import { testimonials, trustPillars } from "@/content/site-data";
+import { testimonials, whyChooseReasons } from "@/content/site-data";
 import { getKitchenStyleProfiles } from "@/lib/kitchen-styles";
 import { getProcessSteps } from "@/lib/our-processes";
 
@@ -80,16 +80,22 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="luxury-shell mt-8">
-          <div data-animate-group className="grid gap-4 rounded-[2rem] border border-white/10 bg-black/25 p-5 md:grid-cols-3 md:p-7">
-            {trustPillars.map((pillar) => (
-              <div
-                key={pillar}
+        <section className="luxury-shell mt-12">
+          <div data-animate="reveal" className="mb-8 max-w-3xl space-y-3">
+            <p className="eyebrow">Ejecución especializada</p>
+            <h2 className="font-display display-title text-5xl text-[var(--color-ivory)] sm:text-6xl">¿Por qué elegir Cocinas JAM?</h2>
+          </div>
+          <div data-animate-group className="grid gap-5 md:grid-cols-2">
+            {whyChooseReasons.map((reason, index) => (
+              <article
+                key={reason.title}
                 data-animate="item"
-                className="caps-label rounded-[1.5rem] border border-white/8 bg-white/5 px-5 py-6 text-[var(--color-ivory)]"
+                className="panel rounded-[1.75rem] p-6 sm:p-7"
               >
-                {pillar}
-              </div>
+                <p className="text-sm font-medium text-[var(--color-gold)]">{String(index + 1).padStart(2, "0")}</p>
+                <h3 className="mt-4 font-display display-title text-3xl text-[var(--color-ivory)] sm:text-4xl">{reason.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-[var(--color-mist)] sm:text-base">{reason.body}</p>
+              </article>
             ))}
           </div>
         </section>
