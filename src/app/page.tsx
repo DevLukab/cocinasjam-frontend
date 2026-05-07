@@ -27,10 +27,10 @@ export default async function HomePage() {
               <p className="eyebrow">Instalación y reforma de cocinas</p>
               <div className="space-y-5">
                 <h1 className="font-display display-hero text-[clamp(3.35rem,4.55vw,4.7rem)] font-medium text-[var(--color-ivory)] sm:text-[clamp(3.9rem,4.8vw,4.95rem)] lg:text-[clamp(4.1rem,4.15vw,4.9rem)]">
-                  Cocinas bien pensadas, ejecutadas con precisión.
+                  Instalación de cocinas a medida con precisión, coordinación y acabados premium.
                 </h1>
                 <p className="max-w-xl text-base leading-8 text-[var(--color-mist)] sm:text-lg">
-                  Desarrollamos proyectos de cocina con criterio técnico, coordinación de materiales y una ejecución cuidada desde la primera conversación hasta la entrega.
+                  Trabajamos con particulares, interioristas y estudios que buscan una ejecución limpia, cuidada y sin improvisaciones.
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row">
