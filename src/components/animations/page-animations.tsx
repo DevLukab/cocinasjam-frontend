@@ -22,7 +22,7 @@ export function PageAnimations({ children }: PropsWithChildren) {
 
         const heroShell = scope.current?.querySelector<HTMLElement>("[data-animate='hero-shell']");
         const heroCopyItems = scope.current?.querySelectorAll<HTMLElement>("[data-animate='hero-copy'] > *");
-        const heroImage = scope.current?.querySelector<HTMLElement>("[data-animate='hero-image']");
+        const heroImage = scope.current?.querySelector<HTMLElement>("[data-animate='hero-video']");
 
         if (heroShell) {
           const heroTimeline = gsap.timeline({
@@ -146,6 +146,59 @@ export function PageAnimations({ children }: PropsWithChildren) {
         });
 
       });
+
+      media.add(
+        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const heroSection = scope.current?.querySelector<HTMLElement>("section.luxury-shell");
+          const videoWrap = scope.current?.querySelector<HTMLElement>("[data-animate='hero-video']");
+          const video = videoWrap?.querySelector<HTMLVideoElement>("[data-hero-video]");
+          const overlay = videoWrap?.querySelector<HTMLElement>("[data-hero-video-overlay]");
+          const caption = videoWrap?.querySelector<HTMLElement>("[data-hero-video-caption]");
+          const heroCopy = scope.current?.querySelector<HTMLElement>("[data-animate='hero-copy']");
+
+          if (!heroSection || !videoWrap) return;
+
+          const revealTimeline = gsap.timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              trigger: heroSection,
+              start: "top top",
+              end: "+=90%",
+              scrub: 1,
+              pin: true,
+              pinSpacing: true,
+              anticipatePin: 1,
+            },
+          });
+
+          revealTimeline.to(
+            videoWrap,
+            {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              borderRadius: 0,
+              borderWidth: 0,
+              zIndex: 40,
+            },
+            0,
+          );
+
+          if (overlay) revealTimeline.to(overlay, { backgroundColor: "rgba(0,0,0,0.5)" }, 0);
+          if (caption) revealTimeline.to(caption, { opacity: 0, y: 24 }, 0);
+          if (heroCopy) revealTimeline.to(heroCopy, { yPercent: -18, opacity: 0 }, 0);
+
+          const refresh = () => ScrollTrigger.refresh();
+          video?.addEventListener("loadedmetadata", refresh, { once: true });
+
+          return () => {
+            video?.removeEventListener("loadedmetadata", refresh);
+          };
+        },
+      );
 
       return () => media.revert();
     },

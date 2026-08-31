@@ -57,19 +57,24 @@ export default async function HomePage() {
           </div>
 
           <div
-            data-animate="hero-image"
+            data-animate="hero-video"
             className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black sm:h-[34rem] lg:h-[36rem]"
           >
-            <Image
-              src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=80"
-              alt="Muestra de proyecto de cocina terminado"
-              fill
-              priority
-              className="inset-0 object-cover object-top"
-              sizes="(max-width: 1024px) 100vw, 45vw"
+            <video
+              data-hero-video
+              src="/hero-reveal.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=80"
+              className="absolute inset-0 h-full w-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(10,9,8,0.02)_0%,_rgba(10,9,8,0.04)_48%,_rgba(10,9,8,0.46)_100%)]" />
-            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+            <div
+              data-hero-video-overlay
+              className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(10,9,8,0.02)_0%,_rgba(10,9,8,0.04)_48%,_rgba(10,9,8,0.46)_100%)]"
+            />
+            <div data-hero-video-caption className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
               <div className="inline-flex max-w-[24rem] flex-col gap-1 rounded-2xl border border-white/10 bg-black/45 px-5 py-4 font-sans backdrop-blur-md">
                 <p className="caps-micro text-[var(--color-gold)]">Acabado distintivo</p>
                 <p className="text-sm leading-6 text-[var(--color-ivory)] sm:text-base">
